@@ -42,7 +42,7 @@ public class TimeServer implements Runnable {
 					bb.flip();
 					
 					result.write(bb, bb, new CompletionHandler<Integer, ByteBuffer>() {
-
+                                                //由于存在半包问题，所以需要递归发送
 						@Override
 						public void completed(Integer l, ByteBuffer bb) {
 							if(bb.hasRemaining()) {
